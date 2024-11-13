@@ -13,7 +13,7 @@ function App() {
 					throw new Error("Remote World Broken");
 				}}
 			>
-				Break Remote World
+				Break Remote a different versions world
 			</button>
 		</div>
 	);
