@@ -3,13 +3,16 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "cross-env NODE_ENV=production rspack build",
+    "build": "cross-env NODE_ENV=production rspack build && pnpm run sentry:sourcemaps",
     "check": "biome check --write",
-    "dev": "cross-env NODE_ENV=development rspack serve",
-    "format": "biome format --write"
+    "dev": "cross-env NODE_ENV=production rspack serve",
+    "format": "biome format --write",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org shane-test-company --project ze-sentry-errors ./dist && sentry-cli sourcemaps upload --org shane-test-company --project ze-sentry-errors ./dist"
   },
   "dependencies": {
     "@module-federation/enhanced": "^0.7.1",
+    "@sentry/browser": "^8.38.0",
+    "@sentry/cli": "^2.38.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zephyr-webpack-plugin": "^0.0.23"
@@ -20,6 +23,7 @@
     "@rspack/core": "^1.1.0",
     "@rspack/plugin-react-refresh": "1.0.0",
     "@sentry/react": "^8.37.1",
+    "@sentry/webpack-plugin": "^2.22.6",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "cross-env": "^7.0.3",
